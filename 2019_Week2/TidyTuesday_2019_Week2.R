@@ -28,3 +28,19 @@ df_table %>%
   scale_y_continuous(expand = c(0,0))
 
 
+#boxplot rating per genre
+
+df_boxplot <- gather(df, type, genre, 2:4, na.rm=TRUE) 
+
+df_boxplot %>%
+  ggplot(aes(genre, av_rating)) + 
+  geom_boxplot() + 
+  coord_flip()
+
+#does it help to have multiple genres per serie? 
+df %<>% mutate(number_of_genres = rowSums(!is.na(df[2:4])))
+df$number_of_genres %<>% as.factor()
+
+df %>% ggplot(aes(x=av_rating, fill = number_of_genres)) + geom_density(alpha = 0.5) + facet_grid(.~number_of_genres)
+
+df %>% ggplot(aes(x=av_rating, x = number_of_genres)) + geom_point()
