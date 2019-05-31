@@ -7,6 +7,7 @@
 library(tidyverse)
 library(magrittr)
 library(ggmap)
+library(viridis)
 
 #load data
 coast_vs_waste <- readr::read_csv("https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2019/2019-05-21/coastal-population-vs-mismanaged-plastic.csv")
